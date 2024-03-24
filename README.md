@@ -63,4 +63,3 @@ vscode-md-taskboard 支持以下配置选项：
 ## 支持
 
 如果您在使用过程中遇到问题或需要帮助，请通过 GitHub Issues 提交您的问题。
-```
