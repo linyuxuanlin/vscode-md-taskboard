@@ -37,18 +37,18 @@ function getWebviewContent(markdownContent: string): string {
     let boardTitle = 'Markdown Kanban';
     let columnsHTML = '';
     let currentColumnTasks = '';
-    let inTaskList = false; // Flag to track if we're processing a task list
+    let inTaskList = false;  // Flag to track if we're processing a task list
+    let currentColumnName = '';
 
     tokens.forEach((token, index) => {
         if (token.type === 'heading_open' && token.tag === 'h1') {
             boardTitle = tokens[index + 1].content;
         } else if (token.type === 'heading_open' && token.tag === 'h2') {
             if (currentColumnTasks) {
-                columnsHTML += `<div class="column">${currentColumnTasks}</div>`;
+                columnsHTML += `<div class="column"><h2>${currentColumnName}</h2>${currentColumnTasks}</div>`;
                 currentColumnTasks = '';
-                inTaskList = false;
             }
-            columnsHTML += `<h2>${tokens[index + 1].content}</h2>`;
+            currentColumnName = tokens[index + 1].content;
         } else if (token.type === 'bullet_list_open') {
             inTaskList = true;
         } else if (token.type === 'bullet_list_close') {
@@ -65,7 +65,7 @@ function getWebviewContent(markdownContent: string): string {
 
     // Add any remaining tasks to the last column
     if (currentColumnTasks) {
-        columnsHTML += `<div class="column">${currentColumnTasks}</div>`;
+        columnsHTML += `<div class="column"><h2>${currentColumnName}</h2>${currentColumnTasks}</div>`;
     }
 
     return `
@@ -77,15 +77,25 @@ function getWebviewContent(markdownContent: string): string {
             <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline';">
             <title>${boardTitle}</title>
             <style>
+                .board {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: flex-start;
+                    overflow-x: auto;
+                }
                 .column {
-                    margin: 20px;
+                    flex: 0 0 auto;
+                    width: 150px;
+                    margin: 10px;
                     padding: 10px;
                     border: 1px solid #ddd;
+                    background-color: #f1f1f1;
                 }
                 .task {
                     margin: 10px 0;
                     padding: 10px;
-                    background-color: #f9f9f9;
+                    background-color: #fff;
+                    border: 1px solid #ddd;
                 }
                 .completed {
                     text-decoration: line-through;
