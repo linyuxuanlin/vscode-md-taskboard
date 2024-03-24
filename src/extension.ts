@@ -41,7 +41,7 @@ function getWebviewContent(markdownContent: string): string {
     let inTaskList = false;
     let currentColumnName = '';
 
-    tokens.forEach((token, index) => {
+    tokens.forEach((token: any, index: number) => {
         if (token.type === 'heading_open' && token.tag === 'h1') {
             boardTitle = tokens[index + 1].content;
         } else if (token.type === 'heading_open' && token.tag === 'h2') {

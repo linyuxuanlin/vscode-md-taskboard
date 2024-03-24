@@ -3,52 +3,60 @@
   "displayName": "vscode-md-taskboard",
   "description": "A markdown based local taskboard(kanban) extension.",
   "version": "0.0.1",
+  "publisher": "linyuxuanlin",
   "engines": {
-      "vscode": "^1.58.0"
+    "vscode": "^1.58.0"
   },
-  "categories": ["Other"],
+  "categories": [
+    "Other"
+  ],
   "main": "./out/extension.js",
+  "activationEvents": [
+    "onCommand:markdownKanban.showBoard"
+  ],
   "contributes": {
     "commands": [
-        {
-            "command": "markdownKanban.showBoard",
-            "title": "Show Markdown Kanban",
-            "icon": {
-                "light": "media/light/show-kanban.svg",
-                "dark": "media/dark/show-kanban.svg"
-            }
+      {
+        "command": "markdownKanban.showBoard",
+        "title": "Show Markdown Kanban",
+        "icon": {
+          "light": "media/light/show-kanban.svg",
+          "dark": "media/dark/show-kanban.svg"
         }
+      }
     ],
     "menus": {
-        "editor/title": [
-            {
-                "when": "resourceLangId == markdown",
-                "command": "markdownKanban.showBoard",
-                "group": "navigation"
-            }
-        ],
-        "editor/title/context": [
-            {
-                "when": "resourceLangId == markdown",
-                "command": "markdownKanban.showBoard",
-                "group": "navigation"
-            }
-        ]
+      "editor/title": [
+        {
+          "when": "resourceLangId == markdown",
+          "command": "markdownKanban.showBoard",
+          "group": "navigation"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "when": "resourceLangId == markdown",
+          "command": "markdownKanban.showBoard",
+          "group": "navigation"
+        }
+      ]
     }
-},
+  },
   "scripts": {
-      "vscode:prepublish": "tsc -p ./",
-      "compile": "tsc -watch -p ./",
-      "postinstall": "node ./node_modules/vsce/out/npm/postinstall.js"
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./"
   },
   "devDependencies": {
-      "typescript": "^4.0.3",
-      "vscode": "^1.1.36",
-      "eslint": "^7.10.0",
-      "@types/node": "^12.11.7",
-      "@types/vscode": "^1.58.0"
+    "@types/markdown-it": "^13.0.7",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^12.11.7",
+    "@types/vscode": "^1.58.0",
+    "eslint": "^7.10.0",
+    "typescript": "^4.0.3",
+    "vsce": "^2.15.0",
+    "vscode": "^1.1.36"
   },
   "dependencies": {
-      "markdown-it": "^12.0.4"
+    "markdown-it": "^12.0.4"
   }
 }

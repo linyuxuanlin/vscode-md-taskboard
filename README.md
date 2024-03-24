@@ -1,71 +1,38 @@
-# vscode-md-taskboard README
+# vscode-md-taskboard
 
-This is the README for your extension "vscode-md-taskboard". After writing up a brief description, we recommend including the following sections.
+vscode-md-taskboard 是一个 Visual Studio Code 扩展，旨在将 Markdown 文件直观地渲染为看板页面，帮助您管理和跟踪任务和笔记。借助这个扩展，您可以在 VS Code 中以看板的形式直观地组织您的 Markdown 任务列表，实时更新看板以反映 Markdown 文件的更改。
 
-## Features
+## 特性
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **Markdown 渲染**：将 Markdown 文件渲染为可视化的看板页面。
+- **实时同步**：Markdown 文件的更新会即时反映在看板页面上。
+- **自定义布局**：支持将 Markdown 中的不同级别标题渲染为看板的不同列。
+- **任务管理**：支持通过 Markdown 任务列表项 (`- [ ]` 和 `- [x]`) 来表示待办事项和完成的任务。
 
-For example if there is an image subfolder under your extension project workspace:
+## 开始使用
 
-\!\[feature X\]\(images/feature-x.png\)
+1. 安装扩展：
+    - 在 VS Code 中，打开扩展视图 (`Ctrl+Shift+X` 或 `Cmd+Shift+X` on Mac)。
+    - 搜索 `vscode-md-taskboard` 并安装。
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+2. 使用扩展：
+    - 打开任意 Markdown 文件。
+    - 点击右上角的 `Show Markdown Kanban` 按钮或通过命令面板 (`Ctrl+Shift+P` 或 `Cmd+Shift+P` on Mac) 运行 `Show Markdown Kanban` 命令。
 
-## Requirements
+## 配置
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+vscode-md-taskboard 支持以下配置选项：
 
-## Extension Settings
+- `mdTaskboard.columnWidth`: 设置看板列的宽度（默认值：`250`）。
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## 贡献
 
-For example:
+我们欢迎所有形式的贡献，包括错误报告、新功能建议以及代码提交。请参阅 [CONTRIBUTING.md](CONTRIBUTING.md) 了解更多信息。
 
-This extension contributes the following settings:
+## 许可证
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+本项目采用 [MIT 许可证](LICENSE)。
 
-## Known Issues
+## 支持
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+如果您在使用过程中遇到问题或需要帮助，请通过 GitHub Issues 提交您的问题。
