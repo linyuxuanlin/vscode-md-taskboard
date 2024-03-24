@@ -1,26 +1,40 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import MarkdownIt from 'markdown-it';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+const md = new MarkdownIt();
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "vscode-md-taskboard" is now active!');
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('vscode-md-taskboard.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from vscode-md-taskboard!');
-	});
-
-	context.subscriptions.push(disposable);
+// 解析 Markdown 文本
+function parseMarkdown(text: string): string {
+  return md.render(text);
 }
 
-// This method is called when your extension is deactivated
-export function deactivate() {}
+function createKanbanWebview(context: vscode.ExtensionContext) {
+	const panel = vscode.window.createWebviewPanel(
+	  'kanban', // 标识
+	  'Markdown Kanban', // 面板标题
+	  vscode.ViewColumn.One, // 编辑器列
+	  {}, // Webview 选项
+	);
+  
+	// 当活动的文本编辑器变化时更新 Webview
+	vscode.window.onDidChangeActiveTextEditor(editor => {
+	  if (editor && editor.document.languageId === 'markdown') {
+		const text = editor.document.getText();
+		const htmlContent = parseMarkdown(text);
+		panel.webview.html = htmlContent; // 将 Markdown 转换为 HTML 并显示
+	  }
+	});
+  }
+  
+  // 激活函数
+  export function activate(context: vscode.ExtensionContext) {
+	let disposable = vscode.commands.registerCommand('extension.showKanban', () => {
+	  // 命令的实现逻辑
+	  vscode.window.showInformationMessage('Hello World from your Extension!');
+	});
+  
+	context.subscriptions.push(disposable);
+  }
+  
+  export function deactivate() {}
+  
