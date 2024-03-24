@@ -1,5 +1,7 @@
 # vscode-md-taskboard
 
+![](https://img.wiki-power.com/d/wiki-media/img/20240324234235.png)
+
 vscode-md-taskboard 是一个 Visual Studio Code 扩展，旨在将 Markdown 文件直观地渲染为看板页面，帮助您管理和跟踪任务和笔记。借助这个扩展，您可以在 VS Code 中以看板的形式直观地组织您的 Markdown 任务列表，实时更新看板以反映 Markdown 文件的更改。
 
 ## 特性
@@ -23,8 +25,6 @@ vscode-md-taskboard 是一个 Visual Studio Code 扩展，旨在将 Markdown 文
 ## Markdown 语法示例
 
 `vscode-md-taskboard` 允许你将 Markdown 文件直观地渲染为看板页面。以下是一个简单的 Markdown 文件示例，展示了如何使用 Markdown 语法来组织你的看板。
-
-![](https://img.wiki-power.com/d/wiki-media/img/20240324234235.png)
 
 ```markdown
 # 项目名称
