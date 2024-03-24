@@ -35,9 +35,9 @@ function getWebviewContent(markdownContent: string): string {
     const tokens = md.parse(markdownContent, {});
 
     let boardTitle = 'Markdown Kanban';
-    let columnsHTML = '';
+    let gridHTML = '';  // HTML for the grid container
     let currentColumnTasks = '';
-    let inTaskList = false;  // Flag to track if we're processing a task list
+    let inTaskList = false;
     let currentColumnName = '';
 
     tokens.forEach((token, index) => {
@@ -45,7 +45,7 @@ function getWebviewContent(markdownContent: string): string {
             boardTitle = tokens[index + 1].content;
         } else if (token.type === 'heading_open' && token.tag === 'h2') {
             if (currentColumnTasks) {
-                columnsHTML += `<div class="column"><h2>${currentColumnName}</h2>${currentColumnTasks}</div>`;
+                gridHTML += `<div class="grid-item"><h2>${currentColumnName}</h2>${currentColumnTasks}</div>`;
                 currentColumnTasks = '';
             }
             currentColumnName = tokens[index + 1].content;
@@ -63,9 +63,9 @@ function getWebviewContent(markdownContent: string): string {
         }
     });
 
-    // Add any remaining tasks to the last column
+    // Add any remaining tasks to the last grid item
     if (currentColumnTasks) {
-        columnsHTML += `<div class="column"><h2>${currentColumnName}</h2>${currentColumnTasks}</div>`;
+        gridHTML += `<div class="grid-item"><h2>${currentColumnName}</h2>${currentColumnTasks}</div>`;
     }
 
     return `
@@ -77,19 +77,16 @@ function getWebviewContent(markdownContent: string): string {
             <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline';">
             <title>${boardTitle}</title>
             <style>
-                .board {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: flex-start;
-                    overflow-x: auto;
+                .grid-container {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(250px, 300px)); /* Adjusted min and max width */
+                    gap: 20px;
+                    padding: 20px;
                 }
-                .column {
-                    flex: 0 0 auto;
-                    width: 150px;
-                    margin: 10px;
-                    padding: 10px;
-                    border: 1px solid #ddd;
+                .grid-item {
                     background-color: #f1f1f1;
+                    padding: 20px;
+                    border: 1px solid #ddd;
                 }
                 .task {
                     margin: 10px 0;
@@ -105,11 +102,12 @@ function getWebviewContent(markdownContent: string): string {
         </head>
         <body>
             <h1>${boardTitle}</h1>
-            <div class="board">${columnsHTML}</div>
+            <div class="grid-container">${gridHTML}</div>
         </body>
         </html>
     `;
 }
+
 
 
 export function deactivate() {}
