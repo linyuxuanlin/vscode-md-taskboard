@@ -4,11 +4,12 @@ import MarkdownIt from 'markdown-it';
 export function activate(context: vscode.ExtensionContext) {
     let disposable = vscode.commands.registerCommand('markdownKanban.showBoard', () => {
         const panel = vscode.window.createWebviewPanel(
-            'markdownKanban',
-            'Markdown Kanban',
-            vscode.ViewColumn.One,
-            {}
+            'markdownKanban',  // Type of the webview, used internally
+            'Markdown Kanban', // Title of the panel displayed to the user
+            vscode.ViewColumn.Beside, // Opens the panel in the side column
+            {}  // Webview options, we won't need any for this example
         );
+        
 
         const updateWebview = () => {
             const editor = vscode.window.activeTextEditor;
