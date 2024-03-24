@@ -44,6 +44,7 @@ vscode-md-taskboard 是一个 Visual Studio Code 扩展，旨在将 Markdown 文
 
 - [x] 市场调研
 - [x] 初步需求分析
+```
 
 ## 配置
 
